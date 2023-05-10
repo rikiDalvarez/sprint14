@@ -63,7 +63,23 @@ myAsyncFunc()
 
 //N2 E1
 
+function returnDouble(number) {
+	return new Promise(res => {
+		setTimeout(() => { res(number * 2) }, 2000);
+	});
+}
 
+returnDouble(5).then(result => {
+	console.log(result);
+});
 
+async function returnSum(a, b, c) {
+	const dub1 = await returnDouble(a);
+	const dub2 = await returnDouble(b)
+	const dub3 = await returnDouble(c)
+	return dub1 + dub2 + dub3
+}
+
+returnSum(1, 2, 10).then(res => console.log(res));
 
 
