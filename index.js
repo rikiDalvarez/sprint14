@@ -29,15 +29,13 @@ let salaries = [{
 //exercise 1
 
 const getInfo = async (id) => {
+	if (typeof id !== "number" || id === 0 || !id) { throw new Error("id must be a number") }
 	const employee = await getEmployee(employees, id);
-	console.log("test :", employee)
 	const emplInfo = await getSalary(salaries, employee)
-	console.log(emplInfo);
+	return emplInfo
 }
 
-getInfo(2);
-
-
+getInfo(1).then(res => console.log(res))
 
 // nivel 1
 //exercise 2
@@ -45,7 +43,7 @@ getInfo(2);
 async function myAsyncFunc() {
 	try {
 		const result = await myPromiseFunc();
-		console.log(result)
+		return result
 	} catch (error) {
 		console.error(error)
 	}
@@ -59,7 +57,7 @@ function myPromiseFunc() {
 	})
 }
 
-myAsyncFunc()
+myAsyncFunc().then(res => console.log(res))
 
 //N2 E1
 
@@ -69,11 +67,12 @@ function returnDouble(number) {
 	});
 }
 
-returnDouble(5).then(result => {
+returnDouble(2).then(result => {
 	console.log(result);
 });
 
 async function returnSum(a, b, c) {
+	if (typeof a !== "number" || typeof b !== "number" || typeof c !== "number") throw new Error("parameters must be of a primite value number")
 	const dub1 = await returnDouble(a);
 	const dub2 = await returnDouble(b)
 	const dub3 = await returnDouble(c)
@@ -81,5 +80,9 @@ async function returnSum(a, b, c) {
 }
 
 returnSum(1, 2, 10).then(res => console.log(res));
+
+// N3 E1
+
+returnSum([1, 2, 10]).then(res => console.log(res));
 
 
