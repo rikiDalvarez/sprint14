@@ -3,6 +3,7 @@
 const getEmployee = require("../sprint13/getEmployee");
 const getSalary = require("../sprint13/getSalary")
 
+
 let employees = [{
 	id: 1,
 	name: 'Linux Torvalds'
@@ -39,23 +40,7 @@ getInfo(1).then(res => console.log(res))
 
 // nivel 1
 //exercise 2
-
-async function myAsyncFunc() {
-	try {
-		const result = await myPromiseFunc();
-		return result
-	} catch (error) {
-		console.error(error)
-	}
-}
-
-function myPromiseFunc() {
-	return new Promise((res) => {
-		setTimeout(() => {
-			res("the promise is resolved after 2 sec")
-		}, 2000)
-	})
-}
+const { myAsyncFunc } = require("./asyncFunc")
 
 myAsyncFunc().then(res => console.log(res))
 
